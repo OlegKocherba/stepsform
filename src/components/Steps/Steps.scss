@@ -1,0 +1,41 @@
+.steps {
+  .step-one {
+    .form-control {
+      border-radius: 0;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-top-color: transparent;
+      &:focus {
+        box-shadow:  none;
+        border-bottom-width: 2px;
+      }
+    }
+  }
+  .step-two {
+    .form-group {
+      label {
+        display: block;
+        margin-bottom: 1rem;
+      }
+      select {
+        text-transform: uppercase;
+      }
+    }
+  }
+  .step-three {
+    text-align: center;
+    .icon-wrap {
+      font-size: 20rem;
+      text-align: center;
+      line-height: 1;
+      margin-bottom: 2rem;
+    }
+  }
+  .form-group {
+    label {
+      margin: 0;
+      text-transform: uppercase;
+      font-size: .825rem;
+    }
+  }
+}
