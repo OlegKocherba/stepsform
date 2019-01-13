@@ -3,7 +3,7 @@ import './CheckboxButtons.scss'
 
 class CheckboxButtons extends Component {
 
-  buttons= [
+  buttons = [
     { name: 'male', label: 'Male'},
     { name: 'female', label: 'Female'},
     { name: 'unspecified', label: 'Unspecified'}

@@ -22,15 +22,16 @@ class StepTwo extends Component {
 
   onCheckboxChange = (gender) => {
     this.setState({
+      ...this.state,
       userGender: gender
     });
   };
   componentDidMount() {
     const {dateOfBirth, userGender, userAnswer } = this.props.userGlobalData;
     if(dateOfBirth !== '') {
-      const userDay = new Date(dateOfBirth).getFullYear();
+      const userDay = new Date(dateOfBirth).getDate();
       const userMonth = new Date(dateOfBirth).getMonth() + 1;
-      const userYear = new Date(dateOfBirth).getDate();
+      const userYear = new Date(dateOfBirth).getFullYear();
       this.setState({
         userDay: userDay,
         userMonth: userMonth,
@@ -52,9 +53,11 @@ class StepTwo extends Component {
 
   componentWillUnmount() {
     const {userDay, userMonth, userYear, userGender, userAnswer } = this.state;
-    let userBirthday = Date.parse(`${userYear}-${userMonth}-${userDay}`);
-    if(Number.isNaN(userBirthday)) {
-      userBirthday = '';
+    let userBirthday;
+    if(userDay === '' || userMonth === '' || userYear === '') {
+       userBirthday = ''
+    } else {
+       userBirthday = Date.parse(`${userYear}-${userMonth}-${userDay}`);
     }
     this.props.saveData(userBirthday, userGender, userAnswer);
   }
