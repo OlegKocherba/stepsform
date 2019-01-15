@@ -1,6 +1,0 @@
-export const GO_NEXT_STEP = 'GO_NEXT_STEP';
-export const GO_PREVIOUS_STEP = 'GO_PREVIOUS_STEP';
-
-export const SAVE_STEP_ONE_DATA = 'SAVE_STEP_ONE_DATA';
-export const SAVE_STEP_TWO_DATA = 'SAVE_STEP_TWO_DATA';
-

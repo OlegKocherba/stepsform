@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
 
@@ -66,8 +66,7 @@ class StepOne extends Component {
 				</form>
 			</div>
 		);
-	}
-}
+};
 
 const mapStateToProps = state => {
 	return {

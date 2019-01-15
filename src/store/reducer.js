@@ -1,4 +1,4 @@
-import * as actionTypes from './actions';
+import * as actionTypes from './actions/actionTypes';
 
 const initialSate = {
   currentStep: 1,
@@ -6,7 +6,10 @@ const initialSate = {
     email: '',
     password: '',
     conf_password: '',
-    dateOfBirth: '',
+    dayOdBirth:'',
+    bDay: '',
+    bMonth: '',
+    bYear: '',
     gender: '',
     howHearAboutUs: '',
   }

@@ -2,9 +2,10 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-const StepThree = ({ userGlobalData }) => {
+const StepThree = ({ userData }) => {
 
   const uploadData = () => {
+    const {} =
     console.log(userGlobalData);
   };
   return (
@@ -23,7 +24,7 @@ Go to Dashboard <i className="fas fa-arrow-right"></i>
 
 const mapStateToProps = state => {
   return {
-    userGlobalData: state.userData,
+    userData: state.userData,
   };
 };
 

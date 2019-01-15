@@ -20,6 +20,15 @@
       select {
         text-transform: uppercase;
       }
+      .btn {
+        label {
+          margin: 0;
+        }
+        input[type=radio] {
+          display: none;
+        }
+      }
+
     }
   }
   .step-three {
