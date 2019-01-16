@@ -42,6 +42,14 @@ const reducer = (state = initialSate, action) => {
 					[action.name]: action.value,
 				},
 			};
+		case actionTypes.CHECKBOX_BUTTON_CHANGE:
+			return {
+				...state,
+				userData: {
+					...state.userData,
+					gender: action.name,
+				},
+			};
 		case actionTypes.CHECK_ERRORS:
 			return {
 				...state,

@@ -20,6 +20,15 @@ export const inputChange = (e) => {
 	};
 };
 
+export const checkboxButtonChange = (e) => {
+	return {
+		type: actionTypes.CHECKBOX_BUTTON_CHANGE,
+		name: e.target.name,
+	};
+};
+
+
+
 export const checkErrors = (errors) => {
 	return {
 		type: actionTypes.CHECK_ERRORS,

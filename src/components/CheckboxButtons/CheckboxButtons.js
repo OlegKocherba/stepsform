@@ -20,7 +20,8 @@ class CheckboxButtons extends Component {
 				<button type="button"
 								className={`btn ${clazz}`}
 								key={name}
-								onClick={() => onCheckboxChange(name)}
+								name={name}
+								onClick={onCheckboxChange}
 				>{label}</button>
 			);
 		});

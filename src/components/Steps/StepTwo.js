@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { inputChange, addDate } from '../../store/actions/actions';
+import { inputChange, addDate, checkboxButtonChange } from '../../store/actions/actions';
 import InlineError from '../messages/InlineError';
+import CheckboxButtons from '../CheckboxButtons/CheckboxButtons';
+// import ButtonGroup from '../ButtonGroup/ButtonGroup';
 
 class StepTwo extends Component {
 
@@ -13,9 +15,7 @@ class StepTwo extends Component {
 	}
 
 	render() {
-		const { userData, inputChange, errors } = this.props;
-
-		const isActiveClass = (userData.gender) ? 'btn-info' : 'btn-outline-secondary';
+		const { userData, inputChange, checkboxButtonChange,  errors } = this.props;
 
 		return (
 			<div className="step-two">
@@ -55,41 +55,45 @@ class StepTwo extends Component {
 						<label>
 							{(errors.gender && <InlineError text={errors.gender}/>) || 'Gender'}
 						</label>
-						<div className="btn-group" role="group">
-							<div className={`btn ${isActiveClass}`}>
-								<label>
-									<input
-										name="gender"
-										type="radio"
-										value="male"
-										onChange={inputChange}
-										checked={userData.gender === 'male'}/>
-									Male
-								</label>
-							</div>
-							<div className={`btn ${isActiveClass}`}>
-								<label>
-									<input
-										name="gender"
-										type="radio"
-										value="female"
-										onChange={inputChange}
-										checked={userData.gender === 'female'}/>
-									Female
-								</label>
-							</div>
-							<div className={`btn ${isActiveClass}`}>
-								<label>
-									<input
-										name="gender"
-										type="radio"
-										value="unspecified"
-										onChange={inputChange}
-										checked={userData.gender === 'unspecified'}/>
-									Unspecified
-								</label>
-							</div>
-						</div>
+						<CheckboxButtons
+							gender={userData.gender}
+							onCheckboxChange={checkboxButtonChange}
+						/>
+						{/*<div className="btn-group" role="group">*/}
+							{/*<div className="btn">*/}
+								{/*<label>*/}
+									{/*<input*/}
+										{/*name="gender"*/}
+										{/*type="radio"*/}
+										{/*value="male"*/}
+										{/*onChange={inputChange}*/}
+										{/*checked={userData.gender === 'male'}/>*/}
+									{/*Male*/}
+								{/*</label>*/}
+							{/*</div>*/}
+							{/*<div className={`btn ${isActiveClass}`}>*/}
+								{/*<label>*/}
+									{/*<input*/}
+										{/*name="gender"*/}
+										{/*type="radio"*/}
+										{/*value="female"*/}
+										{/*onChange={inputChange}*/}
+										{/*checked={userData.gender === 'female'}/>*/}
+									{/*Female*/}
+								{/*</label>*/}
+							{/*</div>*/}
+							{/*<div className={`btn ${isActiveClass}`}>*/}
+								{/*<label>*/}
+									{/*<input*/}
+										{/*name="gender"*/}
+										{/*type="radio"*/}
+										{/*value="unspecified"*/}
+										{/*onChange={inputChange}*/}
+										{/*checked={userData.gender === 'unspecified'}/>*/}
+									{/*Unspecified*/}
+								{/*</label>*/}
+							{/*</div>*/}
+						{/*</div>*/}
 					</div>
 					<div className="form-group">
 						<select className="custom-select"
@@ -118,7 +122,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		inputChange: (e) => dispatch(inputChange(e)),
+		checkboxButtonChange: (e) => dispatch(checkboxButtonChange(e)),
 		addDate: (date) => dispatch(addDate(date)),
+
 	};
 };
 
