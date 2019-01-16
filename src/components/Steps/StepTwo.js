@@ -59,41 +59,6 @@ class StepTwo extends Component {
 							gender={userData.gender}
 							onCheckboxChange={checkboxButtonChange}
 						/>
-						{/*<div className="btn-group" role="group">*/}
-							{/*<div className="btn">*/}
-								{/*<label>*/}
-									{/*<input*/}
-										{/*name="gender"*/}
-										{/*type="radio"*/}
-										{/*value="male"*/}
-										{/*onChange={inputChange}*/}
-										{/*checked={userData.gender === 'male'}/>*/}
-									{/*Male*/}
-								{/*</label>*/}
-							{/*</div>*/}
-							{/*<div className={`btn ${isActiveClass}`}>*/}
-								{/*<label>*/}
-									{/*<input*/}
-										{/*name="gender"*/}
-										{/*type="radio"*/}
-										{/*value="female"*/}
-										{/*onChange={inputChange}*/}
-										{/*checked={userData.gender === 'female'}/>*/}
-									{/*Female*/}
-								{/*</label>*/}
-							{/*</div>*/}
-							{/*<div className={`btn ${isActiveClass}`}>*/}
-								{/*<label>*/}
-									{/*<input*/}
-										{/*name="gender"*/}
-										{/*type="radio"*/}
-										{/*value="unspecified"*/}
-										{/*onChange={inputChange}*/}
-										{/*checked={userData.gender === 'unspecified'}/>*/}
-									{/*Unspecified*/}
-								{/*</label>*/}
-							{/*</div>*/}
-						{/*</div>*/}
 					</div>
 					<div className="form-group">
 						<select className="custom-select"
