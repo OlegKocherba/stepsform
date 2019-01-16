@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {validate} from './Validation/Validation';
-import { goNextStep, goPreviousStep, checkErrors } from '../store/actions/actions';
+import {validate} from '../Validation/Validation';
+import { goNextStep, goPreviousStep, checkErrors } from '../../store/actions/actions';
 
 const Navigation = ({
 	currentStep,
