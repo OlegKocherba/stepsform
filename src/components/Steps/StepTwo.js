@@ -1,45 +1,29 @@
 import React, { Component } from 'react';
-import validator from 'validator';
 import { connect } from 'react-redux';
-import { inputChange } from '../../store/actions/actions';
+
+import { inputChange, addDate } from '../../store/actions/actions';
+import InlineError from '../messages/InlineError';
 
 class StepTwo extends Component {
 
-	parseDate = (data) => {
-		return Date.parse(`${data.day}-${data.month}-${data.year}`);
-	};
-
-	createStringDate = (msDate) => {
-		const day = new Date(msDate).getDate();
-		const month = new Date(msDate).getMonth() + 1;
-		const year = new Date(msDate).getFullYear();
-		return {
-			day,
-			month,
-			year
-		}
-
-	};
-
-	convertDate = (data) => {
-		if (typeof data === 'string') {
-			return this.parseDate(data);
-		}
-		if (typeof data === 'number') {
-			return this.createStringDate(data);
-		}
-	};
+	componentWillUnmount() {
+		const { userData } = this.props;
+		const date = Date.parse(`${userData.bDay}-${userData.bMonth}-${userData.bYear}`);
+		this.props.addDate(date);
+	}
 
 	render() {
-		const {userData, inputChange} = this.props;
+		const { userData, inputChange, errors } = this.props;
 
-		const isActiveClass = (userData.gender) ? 'btn-info': 'btn-outline-secondary';
+		const isActiveClass = (userData.gender) ? 'btn-info' : 'btn-outline-secondary';
 
 		return (
 			<div className="step-two">
 				<form className="text-center">
 					<div className="form-group">
-						<label>Date of Birth</label>
+						<label>
+							{(errors.dateOfBirth && <InlineError text={errors.dateOfBirth}/>) || 'Date of Birth'}
+						</label>
 						<div className="input-group">
 							<input
 								type="text"
@@ -68,7 +52,9 @@ class StepTwo extends Component {
 						</div>
 					</div>
 					<div className="form-group">
-						<label>Gender</label>
+						<label>
+							{(errors.gender && <InlineError text={errors.gender}/>) || 'Gender'}
+						</label>
 						<div className="btn-group" role="group">
 							<div className={`btn ${isActiveClass}`}>
 								<label>
@@ -77,7 +63,7 @@ class StepTwo extends Component {
 										type="radio"
 										value="male"
 										onChange={inputChange}
-										checked={userData.gender === 'male'} />
+										checked={userData.gender === 'male'}/>
 									Male
 								</label>
 							</div>
@@ -88,7 +74,7 @@ class StepTwo extends Component {
 										type="radio"
 										value="female"
 										onChange={inputChange}
-										checked={userData.gender === 'female'} />
+										checked={userData.gender === 'female'}/>
 									Female
 								</label>
 							</div>
@@ -99,11 +85,11 @@ class StepTwo extends Component {
 										type="radio"
 										value="unspecified"
 										onChange={inputChange}
-										checked={userData.gender === 'unspecified'} />
+										checked={userData.gender === 'unspecified'}/>
 									Unspecified
 								</label>
 							</div>
-					</div>
+						</div>
 					</div>
 					<div className="form-group">
 						<select className="custom-select"
@@ -125,18 +111,15 @@ class StepTwo extends Component {
 const mapStateToProps = state => {
 	return {
 		userData: state.userData,
+		errors: state.errors,
 	};
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    saveData: (userBirthday, userGender, userAnswer) => dispatch({
-      type: actionTypes.SAVE_STEP_TWO_DATA,
-      dateOfBirth: userBirthday,
-      gender: userGender,
-      howHearAboutUs: userAnswer
-    }),
-  };
+	return {
+		inputChange: (e) => dispatch(inputChange(e)),
+		addDate: (date) => dispatch(addDate(date)),
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StepTwo);

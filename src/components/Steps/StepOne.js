@@ -1,87 +1,62 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import { inputChange } from '../../store/actions/actions';
+import InlineError from '../messages/InlineError';
 
-class StepOne extends Component {
+const StepOne = ({ userData, inputChange, errors }) => {
 
-	state = {
-		userEmail: '',
-		userPassword: '',
-		userPasswordConf: '',
-	};
+	return (
+		<div className="step-one">
+			<form>
+				<div className="form-group">
+					<label htmlFor="email">
+						{(errors.email && <InlineError text={errors.email}/>) || 'Email'}
+					</label>
+					<input type="email"
+								 value={userData.email}
+								 onChange={inputChange}
+								 name="email"
+								 className="form-control"
+								 id="email"/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="password">
+						{(errors.password && <InlineError text={errors.password}/>) || 'Password'}
+					</label>
+					<input type="password"
+								 value={userData.password}
+								 onChange={inputChange}
+								 name="password"
+								 className="form-control"
+								 id="password"/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="conf_password">
+						{(errors.conf_password && <InlineError text={errors.conf_password}/>) || 'Confirm Password'}
 
-	onChange = e => {
-		this.setState({
-			...this.state, [e.target.name]: e.target.value,
-		});
-	};
-
-	componentDidMount() {
-		const { email, password, conf_password } = this.props.userGlobalData;
-		this.setState({
-			userEmail: email,
-			userPassword: password,
-			userPasswordConf: conf_password,
-		});
-	}
-
-	componentWillUnmount() {
-		const { userEmail, userPassword, userPasswordConf } = this.state;
-		this.props.saveData(userEmail, userPassword, userPasswordConf);
-	}
-
-	render() {
-		const { userEmail, userPassword, userPasswordConf } = this.state;
-
-		return (
-			<div className="step-one">
-				<form>
-					<div className="form-group">
-						<label htmlFor="email">Email address</label>
-						<input type="email"
-									 value={userEmail}
-									 onChange={this.onChange}
-									 name="userEmail"
-									 className="form-control"
-									 id="email"/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="password">Password</label>
-						<input type="password"
-									 value={userPassword}
-									 onChange={this.onChange}
-									 name="userPassword"
-									 className="form-control"
-									 id="password"/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="conf_password">Confirm Password</label>
-						<input type="password"
-									 value={userPasswordConf}
-									 onChange={this.onChange}
-									 name="userPasswordConf"
-									 className="form-control"
-									 id="conf_password"/>
-					</div>
-				</form>
-			</div>
-		);
+					</label>
+					<input type="password"
+								 value={userData.conf_password}
+								 onChange={inputChange}
+								 name="conf_password"
+								 className="form-control"
+								 id="conf_password"/>
+				</div>
+			</form>
+		</div>
+	);
 };
 
 const mapStateToProps = state => {
 	return {
-		userGlobalData: state.userData,
+		userData: state.userData,
+		errors: state.errors,
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		saveData: (userEmail, userPassword, conf_password) => dispatch({
-			type: actionTypes.SAVE_STEP_ONE_DATA,
-			email: userEmail,
-			password: userPassword,
-			conf_password: conf_password,
-		}),
+		inputChange: (e) => dispatch(inputChange(e)),
 	};
 };
 
